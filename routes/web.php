@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,9 @@ Route::get('/login/facebook/callback', function () {
     $user = Socialite::driver('facebook')->stateless()->user();
     return response()->json($user);
 });
+
+
+// Login Line
+Route::get('line/login/', [LoginController::class,'index'])->name('login.line');
+// Callback url
+Route::get('line/login/callback', [LoginController::class,'handleLineCallback'])->name('login.line.callback');
