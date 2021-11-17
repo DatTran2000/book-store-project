@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// route for mailing
+Route::get('/email',\App\Http\Controllers\MailController::class,'index');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Google login
@@ -30,7 +33,7 @@ Route::get('/login/google', function () {
 
 Route::get('/login/google/callback', function () {
     $user = Socialite::driver('google')->stateless()->user();
-    return response()->json($user);
+    return redirect('/home');
 });
 
 // Facebook login
