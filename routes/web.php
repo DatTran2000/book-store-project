@@ -36,6 +36,16 @@ Route::get('/login/google/callback', function () {
     return redirect('/home');
 });
 
+// Twitter login 
+Route::get('/login/twitter', function () {
+    return Socialite::driver('twitter')->redirect();
+});
+
+Route::get('/login/twitter/callback', function () {
+    $user = Socialite::driver('twitter')->user();
+    return redirect('/home');
+});
+
 // Facebook login
 Route::get('/login/facebook', function () {
     return Socialite::driver('facebook')->redirect();

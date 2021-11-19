@@ -48,4 +48,11 @@ return [
         'redirect' => 'http://localhost:8000/line/login/callback',
     ],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_LOGIN_CHANNEL_ID'),
+        'client_secret' => env('TWIITER_LOGIN_CHANNEL_SECRET'),
+        'redirect' => 'http://localhost:8000/login/twitter/callback',
+    ],
+
+
 ];
