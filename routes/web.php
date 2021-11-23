@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,20 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+Route::get('/user', [UserController::class,'index']);
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Chỉ có role là super-admin mới có thể truy cập vào các route của group này
+Route::group(['middleware' => ['role:super-admin']], function () {
+    //
+});
+
+// Chỉ có permission là publish articles thì mới có thể truy cập vào các route của group  này
+Route::group(['middleware' => ['permission:publish articles']], function () {
+    //
 });
 
 Auth::routes();
